@@ -1,0 +1,52 @@
+#include <stdio.h>
+
+struct TreeNode {
+    int data;
+    struct TreeNode *left;
+    struct TreeNode *right;
+};
+
+
+void inorder(struct TreeNode root) {
+    if (root.left != NULL)
+        inorder(*root.left);
+    printf("%d ", root.data);
+    if (root.right != NULL)
+        inorder(*root.right);
+}
+
+
+void preorder(struct TreeNode root) {
+    printf("%d ", root.data);
+    if (root.left != NULL)
+        preorder(*root.left);
+    if (root.right != NULL)
+        preorder(*root.right);
+}
+
+void postorder(struct TreeNode root) {
+    if (root.left != NULL)
+        postorder(*root.left);
+    if (root.right != NULL)
+        postorder(*root.right);
+    printf("%d ", root.data);
+}
+
+int main() {
+    
+    struct TreeNode root = {1, &(struct TreeNode){2, &(struct TreeNode){4, NULL, NULL}, &(struct TreeNode){5, NULL, NULL}}, &(struct TreeNode){3, NULL, NULL}};
+
+    printf("Inorder traversal: ");
+    inorder(root);
+    printf("\n");
+
+    printf("Preorder traversal: ");
+    preorder(root);
+    printf("\n");
+
+    printf("Postorder traversal: ");
+    postorder(root);
+    printf("\n");
+
+    return 0;
+}
